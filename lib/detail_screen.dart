@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:percobaan_prak3/model/tourism_place.dart';
+
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+  const DetailScreen({Key? key, required this.place}) : super(key: key);
 
+  final TourismPlace place;
 
   @override
   Widget build(BuildContext context) {
@@ -11,20 +15,21 @@ class DetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget> [
-            Image.asset('assets/images/submarine.jpg'),
+            Image.asset(place.imageAsset,
+              fit: BoxFit.cover,),
             Container(
-                margin: EdgeInsets.only(top: .0),
+                margin: EdgeInsets.only(top: 10.0),
                 child: Text(
-                  "Surabaya Submarine Monument",
+                  place.name,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 24.0,
                     fontWeight: FontWeight.bold,
                   ),
                 )
             ),
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 15.0),
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget> [
@@ -35,26 +40,26 @@ class DetailScreen extends StatelessWidget {
                     ],
                   ),
                   Column(
-                    children: const <Widget> [
-                      Icon(Icons.lock_clock),
-                      Text('08.00 - 16.00'),
-                ],
-              ),
-                  Column(
-                  children: const <Widget> [
-                  Icon(Icons.money),
-                  Text('Rp 10.000,-'),
-                  ],
+                    children: <Widget> [
+                      Icon(Icons.timer_rounded),
+                      Text(place.jam),
+                    ],
                   ),
-              ],
+                  Column(
+                    children: <Widget> [
+                      Icon(Icons.money),
+                      Text(place.harga),
+                    ],
+                  ),
+                ],
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(15.0),
-              child: const Text(
-                'Museum inside a decommissioned Russian war submarine with tours & an adjacent park with cafes. Clean and well maintained. Car park cost 10k, entrance fee 15k/person. You can see KRI Pasopati there, it is a russian whiskey class. You can also watch the video about the Indonesian Navy at the building beside the submarine.',
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                place.deskripsi,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 12.0),
+                style: TextStyle(fontSize: 20.0),
               ),
             ),
             Container(
@@ -63,21 +68,21 @@ class DetailScreen extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(4.0),
+                      padding: EdgeInsets.all(12.0),
                       child: Image.network(
-                          'https://media-cdn.tripadvisor.com/media/photo-m/1280/16/a9/33/43/liburan-di-farmhouse.jpg'),
+                          place.imageAsset),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Image.asset('assets/images/1.jpg'),
+                      padding:  EdgeInsets.all(12.0),
+                      child: Image.asset(place.imageAsset),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Image.asset('assets/images/2.jpg'),
+                      padding: EdgeInsets.all(12.0),
+                      child: Image.asset(place.imageAsset),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Image.asset('assets/images/3.jpg'),
+                      padding: EdgeInsets.all(12.0),
+                      child: Image.asset(place.imageAsset),
                     ),
                   ],
                 )
